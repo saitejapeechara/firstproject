@@ -9,7 +9,7 @@
 <body>
 <h1> details</h1>
 <form action="getdetails" method="post">
-<input type="number"name="id">
+<input type="number"name="cid">
 <input type="submit" value="submit">
 </form>
 

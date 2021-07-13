@@ -8,6 +8,12 @@
 </head>
 <body>
 <h1>details</h1>
-<h4>${coustmers}</h4>
+<h4>name: ${coustmers.getCname()}</h4>
+<h4>username: ${coustmers.getCusername()}</h4>
+<h4>age: ${coustmers.getCage()}</h4>
+<h4>id: ${coustmers.getCid()}</h4>
+<h4>dob: ${coustmers.getCdob()}</h4>
+<h4>gender: ${coustmers.getCgender()}</h4>
+
 </body>
 </html>
