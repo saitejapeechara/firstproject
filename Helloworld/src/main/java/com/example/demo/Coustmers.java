@@ -62,9 +62,5 @@ public void setCid(int cid) {
 public String toString() {
 	return "Coustmers [cname=" + cname + ", cusername=" + cusername + ", cpassword=" + cpassword + ", cage=" + cage
 			+ ", cdob=" + cdob + ", cgender=" + cgender + "]";
-}
-
-
-
-	
+}	
 }
