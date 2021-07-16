@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.exception.AgeException;
@@ -24,28 +26,34 @@ public class RegistrationController {
 		return "registration";
 	}
 
-	@RequestMapping("/details")
-	public String details(Coustmers coustmers) {
+	//@RequestMapping("/details")
+	@RequestMapping(value="/details",produces={"application/*","text/html"},consumes={"application/*"})
+	@ResponseBody
+	public String details(@RequestBody Coustmers coustmers ) throws PasswordException  {
 		try {
 			int passwordLength = coustmers.getCpassword().length();
-			int ageLimit = coustmers.getCage();
+			
 			if (passwordLength < 5) {
 				log.error("criteria is not matched");
 				throw new PasswordException("password doesnot match criteria");
 
 			}
-
+			int ageLimit = coustmers.getCage();
 			if (ageLimit < 18) {
-				log.error("age is below the limit");
+				log.error("age is below the limit,"+coustmers.getCage());
 				throw new AgeException("you are below tha age criteria");
 			}
 
 			repo.save(coustmers);
-		} catch (PasswordException e) {
-			System.out.println("error" + e.getMessage());
-		} catch (AgeException e) {
-			System.out.println("error" + e.getMessage());
 		}
+		
+//		catch (PasswordException e) {
+//			System.out.println("error" + e.getMessage());
+//		}
+	catch (AgeException e) {
+			System.out.println("error" + e.getMessage());
+	}
+		
 		return "registration";
 	}
 

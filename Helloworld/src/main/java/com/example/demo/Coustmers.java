@@ -7,6 +7,18 @@ import javax.persistence.Id;
 
 @Entity
 public class Coustmers {
+	public Coustmers() {
+		
+	}
+	public Coustmers(String cname,String cusername,String cpassword,int cage,String cdob,String cgender,int cid) {
+	this.cpassword=cpassword;
+	this.cage=cage;
+	this.cusername=cusername;
+	this.cname=cname;
+	this.cid=cid;
+	this.cage=cage;
+	
+	}
 
 private  String cname;
 private  String cusername;
