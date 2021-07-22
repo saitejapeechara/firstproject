@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,11 +66,33 @@ public class RegistrationController {
 		return "viewcoustmer";
 	}
 
+//	@PostMapping("/getdetails")
+//	public ModelAndView getdetails(@RequestParam int cid) {
+//		ModelAndView mv = new ModelAndView("retrive");
+//		Coustmers coustmers = repo.findById(cid).orElse(null);
+//		mv.addObject(coustmers);
+//		return mv;
+//	}
 	@PostMapping("/getdetails")
 	public ModelAndView getdetails(@RequestParam int cid) {
+		Coustmers coustmers;
 		ModelAndView mv = new ModelAndView("retrive");
-		Coustmers coustmers = repo.findById(cid).orElse(null);
-		mv.addObject(coustmers);
+		List<Coustmers> CoustmerList = (List<Coustmers>) repo.findAll();
+		
+		//mv.addObject(coustmers);
+		//coustmers.forEach(details->System.out.println(details));
+		
+		Optional<Coustmers> matchingCoustmer=CoustmerList.stream().filter(p->p.getCid()==(cid)).findFirst();
+		if(matchingCoustmer.isPresent()) {
+			coustmers= matchingCoustmer.get();
+			log.info("person is found"+ coustmers.getCusername());
+			mv.addObject(coustmers);
+		}else
+		{
+			coustmers=matchingCoustmer.orElse(null);
+			log.info("serached uname is not found",cid);
+			mv.setViewName("viewcoustmer");
+		}
 		return mv;
 	}
 }
