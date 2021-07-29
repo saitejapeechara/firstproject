@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo1.controller;
 
+import com.example.demo1.repo.CoustmerRepo;
+import com.example.demo1.model.Coustmers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

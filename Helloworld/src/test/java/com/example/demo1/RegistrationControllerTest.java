@@ -1,12 +1,14 @@
-package com.example.demo;
+package com.example.demo1;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.any;
 
+import com.example.demo1.controller.RegistrationController;
+import com.example.demo1.model.Coustmers;
+import com.example.demo1.repo.CoustmerRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,11 +23,11 @@ class RegistrationControllerTest {
 
 	
 		@InjectMocks
-	    RegistrationController rc;
+		RegistrationController rc;
 	    
 	    
 	    @Mock
-	    CoustmerRepo repo;
+		CoustmerRepo repo;
 	    Coustmers p ;
 	    @BeforeEach
 	    public void setup() {
